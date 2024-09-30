@@ -1,0 +1,835 @@
+{
+	"info": {
+		"_postman_id": "4aacaae1-4d10-4205-8cbe-7cf38fd20d50",
+		"name": "Dmoney Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29439068"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Incorrect Login Credential",
+					"item": [
+						{
+							"name": "Login Link Incorrect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let JsonData = pm.response.json();\r",
+											"let token = JsonData.token;\r",
+											"pm.collectionVariables.set(\"token\",token);\r",
+											"\r",
+											"\r",
+											"pm.test(\"Check if login Link Not Found\", function () {\r",
+											"    pm.expect(JsonData.error.message).includes(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@roadtocareer.net\",\r\n    \"password\":\"1234\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/logi",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"logi"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Correct Login Credential",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let JsonData = pm.response.json();\r",
+											"let token = JsonData.token;\r",
+											"pm.collectionVariables.set(\"token\",token);\r",
+											"pm.environment.set(\"token\",token);\r",
+											"\r",
+											"\r",
+											"pm.test(\"Check if login Sucessfully\", function () {\r",
+											"    pm.expect(JsonData.message).includes(\"Login successful\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@roadtocareer.net\",\r\n    \"password\":\"1234\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Login",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"admin@roadtocareer.net\",\r\n    \"password\":\"1234\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/user/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sun, 08 Sep 2024 06:16:45 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Apache"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "Express, Phusion Passenger(R) 6.0.23"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"110-BC9O6FsI6DTycwlNBRsw/UQGbn8\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "272"
+										},
+										{
+											"key": "Status",
+											"value": "200 OK"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5, max=100"
+										},
+										{
+											"key": "Connection",
+											"value": "Keep-Alive"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Login successful\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiYWRtaW5Acm9hZHRvY2FyZWVyLm5ldCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcyNTc3NjIwNSwiZXhwIjoxNzI1Nzc5ODA1fQ.fduw1bEPAnF-yvdYLyfdbnoXJxFyBc0KVrTeO5m2Oi0\",\n    \"role\": \"Admin\",\n    \"expiresIn\": \"1h\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User List",
+			"item": [
+				{
+					"name": "User List Found",
+					"item": [
+						{
+							"name": "Users List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let JsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Check if User list Sucessfully viewed\", function () {\r",
+											"    pm.expect(JsonData.message).equals(\"User list\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-AUTH-SECRET-KEY",
+										"value": "{{partnerkey}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/list",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User List Not Found",
+					"item": [
+						{
+							"name": "Users List Link Incorrect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let JsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Check if User list Link Not Found\", function () {\r",
+											"    pm.expect(JsonData.error.message).includes(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-AUTH-SECRET-KEY",
+										"value": "{{partnerkey}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/lis",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"lis"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Create User",
+			"item": [
+				{
+					"name": "Not Created User",
+					"item": []
+				},
+				{
+					"name": "Created User",
+					"item": [
+						{
+							"name": "Create User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let JsonData = pm.response.json();\r",
+											"let UserId = JsonData.user.id;\r",
+											"let UserEmail = JsonData.user.email;\r",
+											"let UserNID = JsonData.user.nid;\r",
+											"//let UserPhoneNumber = JsonData.user.phone_number;\r",
+											"\r",
+											"pm.collectionVariables.set(\"UserId\",UserId);\r",
+											"pm.collectionVariables.set(\"UserEmail\",UserEmail.toLowerCase());\r",
+											"pm.collectionVariables.set(\"UserNID\",UserNID);\r",
+											"//pm.collectionVariables.set(\"UserPhoneNumber\",UserPhoneNumber);\r",
+											"\r",
+											"pm.environment.set(\"UserId\",UserId);\r",
+											"pm.environment.set(\"UserEmail\",UserEmail.toLowerCase());\r",
+											"pm.environment.set(\"UserNID\",UserNID);\r",
+											"\r",
+											"\r",
+											"\r",
+											"pm.test(\"Check if User created Sucessfully\", function () {\r",
+											"    pm.expect(JsonData.message).equals(\"User created\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"let randomId = _.random(100000, 999999);\r",
+											"let prefix = \"01900\";\r",
+											"let prefix1 = \"1234\"\r",
+											"let UserPhoneNumber = prefix + randomId;\r",
+											"let UserNID = prefix1 + randomId;\r",
+											"\r",
+											"pm.collectionVariables.set(\"UserPhoneNumber\", UserPhoneNumber);\r",
+											"pm.collectionVariables.set(\"UserNID\", UserNID);\r",
+											"\r",
+											"pm.environment.set(\"UserPhoneNumber\", UserPhoneNumber);\r",
+											"pm.environment.set(\"UserNID\", UserNID);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "X-AUTH-SECRET-KEY",
+										"value": "{{partnerkey}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"{{$randomFullName}}\",\r\n    \"email\":\"{{$randomEmail}}\",\r\n    \"password\":\"{{$randomPassword}}\",\r\n    \"phone_number\":\"{{UserPhoneNumber}}\",\r\n    \"nid\":\"{{UserNID}}\",\r\n    \"role\":\"Customer\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/user/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Search User",
+			"item": [
+				{
+					"name": "Search User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let JsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check if User found Sucessfully\", function () {\r",
+									"    pm.expect(JsonData.message).equals(\"User found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-AUTH-SECRET-KEY",
+								"value": "{{partnerkey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/search/id/{{UserId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"search",
+								"id",
+								"{{UserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update User",
+			"item": [
+				{
+					"name": "User Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let JsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check if User created Sucessfully\", function () {\r",
+									"    pm.expect(JsonData.message).equals(\"User updated\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-AUTH-SECRET-KEY",
+								"value": "{{partnerkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"MOP Littel DDS\",\r\n        \"email\": \"Alize.OKeefe64@yahoo.com\",\r\n        \"password\": \"bemxW1Z464JW0w9\",\r\n        \"phone_number\": \"01900720636\",\r\n        \"nid\": \"1234720636\",\r\n        \"role\": \"Customer\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/update/{{UserId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"update",
+								"{{UserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Update by Patch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let JsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check if User updated successfully for role\", function () {\r",
+									"    pm.expect(JsonData.message).equals(\"User updated successfully\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-AUTH-SECRET-KEY",
+								"value": "{{partnerkey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"role\": \"Merchant\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/update/{{UserId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"update",
+								"{{UserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete User",
+			"item": [
+				{
+					"name": "Delete User Successfully",
+					"item": [
+						{
+							"name": "User Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let JsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Check if User deleted successfully\", function () {\r",
+											"    pm.expect(JsonData.message).equals(\"User deleted successfully\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-AUTH-SECRET-KEY",
+										"value": "{{partnerkey}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/user/delete/{{UserId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"delete",
+										"{{UserId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete User Not Found",
+					"item": [
+						{
+							"name": "User Delete Not Found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let JsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Check if User after deleted not found\", function () {\r",
+											"    pm.expect(JsonData.message).equals(\"User not found\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-AUTH-SECRET-KEY",
+										"value": "{{partnerkey}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/user/delete/{{UserId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"delete",
+										"{{UserId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "partnerkey",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "UserPhoneNumber",
+			"value": ""
+		},
+		{
+			"key": "UserId",
+			"value": ""
+		},
+		{
+			"key": "UserEmail",
+			"value": ""
+		},
+		{
+			"key": "UserNID",
+			"value": ""
+		}
+	]
+}
