@@ -38,4 +38,4 @@ This repository contains the Postman collection for **Dmoney API**, covering use
 
 Built-in tests for status codes and response validation (e.g., "Login successful", "User created").
 
-## There is a Snapshort of newman (Dmoney API) ![DmoneyUsersSnapShot](https://github.com/user-attachments/assets/c8a9d484-7304-46a0-9e17-32b6e48f816c)
+## There is a Snapshot of newman (Dmoney API) ![DmoneyUsersSnapShot](https://github.com/user-attachments/assets/c8a9d484-7304-46a0-9e17-32b6e48f816c)
